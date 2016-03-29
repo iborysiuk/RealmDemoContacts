@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RealmContacts</string>
+
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_delete">Delete</string>
+
 </resources>

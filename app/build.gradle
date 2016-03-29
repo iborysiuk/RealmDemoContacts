@@ -11,6 +11,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.realmcontacts"
         minSdkVersion 15
         targetSdkVersion 22
@@ -28,6 +29,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
@@ -39,4 +49,5 @@ dependencies {
     compile 'io.reactivex:rxjava-computation-expressions:0.21.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.thorbenprimke:realm-recyclerview:0.9.13'
+    compile 'com.google.guava:guava:19.0'
 }

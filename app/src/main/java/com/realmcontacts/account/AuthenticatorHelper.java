@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 
+import com.google.common.base.Optional;
 import com.realmcontacts.RealmApp;
 
 /**
@@ -20,15 +21,15 @@ public class AuthenticatorHelper {
     private AuthenticatorHelper() {
     }
 
-    private Account getOrCreateAccount(Context context) {
+    private Optional<Account> getOrCreateAccount(Context context) {
         AccountManager accountManager = AccountManager.get(context);
         Account[] accounts = accountManager.getAccountsByType(ACCOUNT_TYPE);
-        return accounts.length == 0 ? accounts[0] : null;
+        return accounts.length == 0 ? Optional.absent() : Optional.of(accounts[0]);
     }
 
     public void authenticateAccount(Context context) {
-        Account account = getOrCreateAccount(context);
-        if (account == null)
+        Optional<Account> account = getOrCreateAccount(context);
+        if (!account.isPresent())
             AccountManager.get(RealmApp.getContext())
                     .addAccountExplicitly(new Account(ACCOUNT_NAME, ACCOUNT_TYPE), null, null);
     }

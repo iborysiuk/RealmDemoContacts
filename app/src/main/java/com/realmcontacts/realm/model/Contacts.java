@@ -1,4 +1,4 @@
-package com.realmcontacts.realm;
+package com.realmcontacts.realm.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -11,6 +11,7 @@ public class Contacts extends RealmObject {
 
     @PrimaryKey
     private String id;
+
     @Required
     private String name;
     private String number;
@@ -64,8 +65,8 @@ public class Contacts extends RealmObject {
         private String number;
         private String thumbnail;
 
-        public Contacts.Builder setId(String id) {
-            this.id = id;
+        public Contacts.Builder setId(long id) {
+            this.id = String.valueOf(id);
             return this;
         }
 
