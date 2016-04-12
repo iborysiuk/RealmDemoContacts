@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="superslim_GridSLM"><attr format="dimension" name="slm_grid_columnWidth"/><attr format="enum|integer" name="slm_grid_numColumns"><enum name="auto_fit" value="-1"/></attr></declare-styleable>
+    <declare-styleable name="superslim_LayoutManager"><attr format="boolean" name="slm_isHeader"/><attr name="slm_headerDisplay"><flag name="inline" value="0x01"/><flag name="start" value="0x02"/><flag name="end" value="0x04"/><flag name="overlay" value="0x08"/><flag name="sticky" value="0x10"/></attr><attr format="integer" name="slm_section_firstPosition"/><attr format="enum|string" name="slm_section_sectionManager"><enum name="linear" value="0x01"/><enum name="grid" value="0x02"/><enum name="staggered_grid" value="0x03"/></attr><attr format="enum|dimension" name="slm_section_headerMarginStart"><enum name="match_header" value="-1"/></attr><attr format="enum|dimension" name="slm_section_headerMarginEnd"><enum name="match_header" value="-1"/></attr></declare-styleable>
+</resources>

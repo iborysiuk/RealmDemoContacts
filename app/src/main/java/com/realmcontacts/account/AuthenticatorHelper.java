@@ -2,13 +2,14 @@ package com.realmcontacts.account;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.content.ContentResolver;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.content.Context;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 
 import com.google.common.base.Optional;
 import com.realmcontacts.RealmApp;
+
+import java.io.IOException;
 
 /**
  * Created by Yuriy on 2016-03-27 RealmContacts.
@@ -21,7 +22,7 @@ public class AuthenticatorHelper {
     private AuthenticatorHelper() {
     }
 
-    private Optional<Account> getOrCreateAccount(Context context) {
+    public Optional<Account> getOrCreateAccount(Context context) {
         AccountManager accountManager = AccountManager.get(context);
         Account[] accounts = accountManager.getAccountsByType(ACCOUNT_TYPE);
         return accounts.length == 0 ? Optional.absent() : Optional.of(accounts[0]);
@@ -32,13 +33,15 @@ public class AuthenticatorHelper {
         if (!account.isPresent())
             AccountManager.get(RealmApp.getContext())
                     .addAccountExplicitly(new Account(ACCOUNT_NAME, ACCOUNT_TYPE), null, null);
-    }
-
-    public void manualContactsSync() {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        ContentResolver.requestSync(null, ContactsContract.AUTHORITY, bundle);
+        else {
+            new Thread(() -> {
+                try {
+                    AccountManager.get(RealmApp.getContext()).blockingGetAuthToken(account.get(), ACCOUNT_TYPE, true);
+                } catch (OperationCanceledException | IOException | AuthenticatorException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
     }
 
     public static AuthenticatorHelper getInstance() {

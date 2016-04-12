@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RealmContacts.iml" filepath="$PROJECT_DIR$/RealmContacts.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/libs/realm-recyclerview/realm-recyclerview.iml" filepath="$PROJECT_DIR$/app/libs/realm-recyclerview/realm-recyclerview.iml" />
     </modules>
   </component>
 </project>

@@ -17,6 +17,8 @@ import android.support.annotation.Nullable;
  */
 public class AuthenticatorService extends Service {
 
+    private static final String TAG = "AuthenticatorService";
+
     private static AuthenticatorImpl sAuthenticator = null;
 
     @Nullable
@@ -36,11 +38,8 @@ public class AuthenticatorService extends Service {
 
     private static class AuthenticatorImpl extends AbstractAccountAuthenticator {
 
-        private Context mContext;
-
         public AuthenticatorImpl(Context context) {
             super(context);
-            mContext = context;
         }
 
         @Override
@@ -60,6 +59,13 @@ public class AuthenticatorService extends Service {
 
         @Override
         public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account, String authTokenType, Bundle options) throws NetworkErrorException {
+
+//            ContentResolver.setIsSyncable(account, ContactsContract.AUTHORITY, 1);
+//            if (!ContentResolver.getSyncAutomatically(account, ContactsContract.AUTHORITY))
+//                ContentResolver.addPeriodicSync(account, ContactsContract.AUTHORITY, Bundle.EMPTY, 90);
+//            ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, true);
+//            Log.d(TAG, "SyncAutomatically");
+
             return null;
         }
 

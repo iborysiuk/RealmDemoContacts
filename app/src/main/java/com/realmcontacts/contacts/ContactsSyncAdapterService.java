@@ -22,4 +22,5 @@ public class ContactsSyncAdapterService extends Service {
     public IBinder onBind(Intent intent) {
         return sSyncAdapter.getSyncAdapterBinder();
     }
+
 }

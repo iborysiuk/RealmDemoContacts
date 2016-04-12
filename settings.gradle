@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':realm-recyclerview'
+project(':realm-recyclerview').projectDir = new File('app/libs/realm-recyclerview')

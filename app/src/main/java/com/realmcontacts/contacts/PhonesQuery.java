@@ -20,4 +20,5 @@ public interface PhonesQuery {
     };
 
     int NUMBER = 1;
+    int TYPE = 2;
 }

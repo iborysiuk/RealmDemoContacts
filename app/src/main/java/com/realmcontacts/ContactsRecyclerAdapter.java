@@ -19,10 +19,17 @@ import io.realm.RealmViewHolder;
 public class ContactsRecyclerAdapter
         extends RealmBasedRecyclerViewAdapter<Contacts, ContactsRecyclerAdapter.ViewHolder> {
 
-    public ContactsRecyclerAdapter(Context context, RealmResults<Contacts> realmResults,
-                                   boolean automaticUpdate, boolean animateResults,
-                                   String animateExtraColumnName) {
+    public ContactsRecyclerAdapter(Context context, RealmResults<Contacts> realmResults, boolean automaticUpdate, boolean animateResults, String animateExtraColumnName) {
         super(context, realmResults, automaticUpdate, animateResults, animateExtraColumnName);
+    }
+
+    public ContactsRecyclerAdapter(Context context, RealmResults<Contacts> realmResults, boolean automaticUpdate, boolean animateResults, boolean addSectionHeaders, String headerColumnName) {
+        super(context, realmResults, automaticUpdate, animateResults, addSectionHeaders, headerColumnName);
+    }
+
+    @Override
+    public String createHeaderFromColumnValue(String columnValue) {
+        return super.createHeaderFromColumnValue(columnValue);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.realmcontacts.realm.model;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -14,17 +15,19 @@ public class Contacts extends RealmObject {
 
     @Required
     private String name;
-    private String number;
+    private RealmList<Number> number;
     private String thumbnail;
+    private Long updatedAt;
 
     public Contacts() {
     }
 
-    private Contacts(String id, String name, String number, String thumbnail) {
+    private Contacts(String id, String name, RealmList<Number> number, String thumbnail, Long updatedAt) {
         this.id = id;
         this.name = name;
         this.number = number;
         this.thumbnail = thumbnail;
+        this.updatedAt = updatedAt;
     }
 
     public String getId() {
@@ -43,11 +46,11 @@ public class Contacts extends RealmObject {
         this.name = name;
     }
 
-    public String getNumber() {
+    public RealmList<Number> getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(RealmList<Number> number) {
         this.number = number;
     }
 
@@ -59,11 +62,20 @@ public class Contacts extends RealmObject {
         this.thumbnail = thumbnail;
     }
 
+    public Long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public static class Builder {
         private String id;
         private String name;
-        private String number;
+        private RealmList<Number> number;
         private String thumbnail;
+        private Long updatedAt;
 
         public Contacts.Builder setId(long id) {
             this.id = String.valueOf(id);
@@ -75,7 +87,7 @@ public class Contacts extends RealmObject {
             return this;
         }
 
-        public Contacts.Builder setNumber(String number) {
+        public Contacts.Builder setNumber(RealmList<Number> number) {
             this.number = number;
             return this;
         }
@@ -85,8 +97,13 @@ public class Contacts extends RealmObject {
             return this;
         }
 
+        public Contacts.Builder setUpdatedAt(Long updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
         public Contacts build() {
-            return new Contacts(id, name, number, thumbnail);
+            return new Contacts(id, name, number, thumbnail, updatedAt);
         }
     }
 }

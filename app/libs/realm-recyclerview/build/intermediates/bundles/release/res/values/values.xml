@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RealmRecyclerView"><attr format="boolean" name="rrvIsRefreshable"/><attr format="reference" name="rrvEmptyLayoutId"/><attr name="rrvLayoutType"><enum name="LinearLayout" value="0"/><enum name="Grid" value="1"/><enum name="LinearLayoutWithHeaders" value="2"/></attr><attr format="integer" name="rrvGridLayoutSpanCount"/><attr format="dimension" name="rrvGridLayoutItemWidth"/><attr format="string" name="rrvHeaderColumnName"/><attr format="boolean" name="rrvSwipeToDelete"/></declare-styleable>
+    <dimen name="load_more_item_height">50dp</dimen>
+</resources>
