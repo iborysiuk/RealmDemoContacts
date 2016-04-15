@@ -1,4 +1,4 @@
-package com.realmcontacts.realm.model;
+package com.realmcontacts.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.Required;

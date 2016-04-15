@@ -95,6 +95,7 @@ public abstract class RealmBasedRecyclerViewAdapter
     private RealmFieldType animatePrimaryIdType;
     private long animateExtraColumnIndex;
     private RealmFieldType animateExtraIdType;
+    private OnUpdatedListener updatedListener;
 
     public RealmBasedRecyclerViewAdapter(
             Context context,
@@ -438,7 +439,7 @@ public abstract class RealmBasedRecyclerViewAdapter
                         return;
                     }
                     Patch patch = DiffUtils.diff(ids, newIds);
-                    List    <Delta> deltas = patch.getDeltas();
+                    List<Delta> deltas = patch.getDeltas();
                     ids = newIds;
                     if (deltas.isEmpty()) {
                         // Nothing has changed - most likely because the notification was for
@@ -450,9 +451,11 @@ public abstract class RealmBasedRecyclerViewAdapter
                         if (delta.getType() == Delta.TYPE.INSERT) {
                             if (delta.getRevised().size() == 1) {
                                 notifyItemInserted(delta.getRevised().getPosition());
+
                             } else {
                                 final Chunk revised = delta.getRevised();
                                 notifyItemRangeInserted(revised.getPosition(), revised.size());
+
                             }
                         } else if (delta.getType() == Delta.TYPE.DELETE) {
                             if (delta.getOriginal().size() == 1) {
@@ -482,6 +485,7 @@ public abstract class RealmBasedRecyclerViewAdapter
                             }
                         } else {
                             notifyDataSetChanged();
+                            updatedListener.updated(true);
                         }
                     } else {
                         for (Delta delta : deltas) {
@@ -504,6 +508,7 @@ public abstract class RealmBasedRecyclerViewAdapter
                     notifyDataSetChanged();
                     ids = getIdsOfRealmResults();
                 }
+                if (updatedListener != null) updatedListener.updated(true);
             }
         };
     }
@@ -554,7 +559,7 @@ public abstract class RealmBasedRecyclerViewAdapter
 
     /**
      * Called when an item has been dismissed by a swipe.
-     *
+     * <p>
      * Only supported with type linearLayout and thus the realmResults can be accessed directly.
      * If it is extended to LinearLayoutWithHeaders, rowWrappers will have to be used.
      */
@@ -564,5 +569,15 @@ public abstract class RealmBasedRecyclerViewAdapter
         realmResults.get(position).removeFromRealm();
         realm.commitTransaction();
     }
+
+    public void setUpdatedListener(OnUpdatedListener updatedListener) {
+        this.updatedListener = updatedListener;
+    }
+
+    public interface OnUpdatedListener {
+        void updated(boolean isUpdated);
+    }
+
+
 }
 

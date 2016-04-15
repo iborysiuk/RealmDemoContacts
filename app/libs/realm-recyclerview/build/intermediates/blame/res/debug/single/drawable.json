@@ -96,12 +96,12 @@
         "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_switch_thumb_material.xml"
     },
     {
-        "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
-        "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
-    },
-    {
         "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\design_snackbar_background.xml",
         "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\drawable\\design_snackbar_background.xml"
+    },
+    {
+        "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
     {
         "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",

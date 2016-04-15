@@ -10,8 +10,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.realmcontacts.realm.model.Contacts;
-import com.realmcontacts.realm.model.Number;
+import com.realmcontacts.model.Contacts;
+import com.realmcontacts.model.Number;
 
 import hugo.weaving.DebugLog;
 import io.realm.Realm;
@@ -77,6 +77,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
                 } catch (Exception e) {
                     Log.e(TAG, e.getMessage(), e);
+                    realm.cancelTransaction();
                 }
             }
 
@@ -87,17 +88,21 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
     }
+
     @DebugLog
     private void removeUneligibleContacts(Realm realm, long currentTime) {
         RealmResults<Contacts> results = realm.where(Contacts.class).notEqualTo("updatedAt", currentTime).findAll();
         if (results.isEmpty()) return;
-        realm.beginTransaction();
-        for (int i = 0; i < results.size(); i++) {
-            results.get(i).removeFromRealm();
+        try {
+            realm.beginTransaction();
+            for (int i = 0; i < results.size(); i++) {
+                results.get(i).removeFromRealm();
+            }
+            results.clear();
+            realm.commitTransaction();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+            realm.cancelTransaction();
         }
-        results.clear();
-        realm.commitTransaction();
-
-
     }
- }
+}

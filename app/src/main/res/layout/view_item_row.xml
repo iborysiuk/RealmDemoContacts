@@ -5,13 +5,54 @@
     android:layout_height="56dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/contact.text.view"
-        style="@style/Base.TextAppearance.AppCompat.Medium"
+    <RelativeLayout
+        android:id="@+id/contact.toggle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        tools:text="Contacts name" />
+        android:layout_height="56dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:layoutDirection="locale"
+        tools:ignore="UselessParent">
+
+        <com.realmcontacts.widgets.ContactImageView
+            android:id="@+id/contact.image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/contact.type"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:layout_toEndOf="@id/contact.image"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="16dp"
+            tools:text="Mobile" />
+
+        <TextView
+            android:id="@+id/contact.text.view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_above="@id/contact.type"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="40dp"
+            android:layout_toEndOf="@id/contact.image"
+            android:gravity="center_vertical|bottom"
+            android:paddingEnd="8dp"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            tools:text="Username" />
+
+    </RelativeLayout>
 
 </LinearLayout>

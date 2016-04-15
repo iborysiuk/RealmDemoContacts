@@ -36,12 +36,12 @@
         "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
-        "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_separator.xml",
-        "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\layout\\design_navigation_item_separator.xml"
-    },
-    {
         "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_media_action.xml",
         "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\layout\\design_navigation_item_separator.xml"
     },
     {
         "merged": "D:\\Development\\ANDROID\\MyProjects\\RealmContacts\\app\\libs\\realm-recyclerview\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\design_navigation_item_subheader.xml",

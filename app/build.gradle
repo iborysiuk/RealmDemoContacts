@@ -15,7 +15,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.realmcontacts"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -53,5 +53,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.guava:guava:19.0'
     compile project(path: ':realm-recyclerview')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
 }
