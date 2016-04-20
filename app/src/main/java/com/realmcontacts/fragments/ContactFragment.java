@@ -10,7 +10,7 @@ import android.view.View;
 import com.google.common.base.Optional;
 import com.realmcontacts.R;
 import com.realmcontacts.adapters.ContactsRecyclerAdapter;
-import com.realmcontacts.model.Contacts;
+import com.realmcontacts.model.Contact;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -55,11 +55,12 @@ public class ContactFragment extends BaseFragment {
             if (isActivityNotNull()) {
                 realm = Optional.of(Realm.getDefaultInstance());
                 if (realm.isPresent()) {
-                    RealmResults<Contacts> realmResults = realm.get()
-                            .where(Contacts.class)
-                            .findAllSorted("name", Sort.ASCENDING);
+                    RealmResults<Contact> realmResults = realm.get()
+                            .where(Contact.class)
+                            .isNotNull("vsrName")
+                            .findAllSorted("vsrName", Sort.ASCENDING);
 
-                    contactAdapter = new ContactsRecyclerAdapter(getActivity(), realmResults, true, true, "name");
+                    contactAdapter = new ContactsRecyclerAdapter(getActivity(), realmResults, true, true, "vsrName");
                     realmRecyclerView.setAdapter(contactAdapter);
                     //realmRecyclerView.setOnRefreshListener(this::manualSyncContacts);
                     //contactAdapter.setUpdatedListener((boolean isUpdated) -> realmRecyclerView.setRefreshing(!isUpdated));

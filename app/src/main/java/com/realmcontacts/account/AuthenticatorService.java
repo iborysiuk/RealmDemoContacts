@@ -17,8 +17,6 @@ import android.support.annotation.Nullable;
  */
 public class AuthenticatorService extends Service {
 
-    private static final String TAG = "AuthenticatorService";
-
     private static AuthenticatorImpl sAuthenticator = null;
 
     @Nullable

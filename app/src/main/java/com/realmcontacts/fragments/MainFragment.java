@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.realmcontacts.R;
 import com.realmcontacts.adapters.PageAdapter;
-import com.realmcontacts.model.Contacts;
+import com.realmcontacts.model.Contact;
 
 import butterknife.Bind;
 import io.realm.Realm;
@@ -22,9 +22,9 @@ public class MainFragment extends BaseFragment {
 
     private static final String TAG = "MainFragment";
 
-    @Bind(R.id.contacts_tab_layout)
+    @Bind(R.id.contact_tab_layout)
     TabLayout mTabLayout;
-    @Bind(R.id.contacts_view_pager)
+    @Bind(R.id.contact_view_pager)
     ViewPager mViewPager;
 
     public MainFragment() {
@@ -41,7 +41,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected int getToolbarId() {
-        return R.id.contacts_toolbar;
+        return R.id.contact_toolbar;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MainFragment extends BaseFragment {
 
     private void deleteContacts() {
         Realm realm = Realm.getDefaultInstance();
-        RealmResults<Contacts> results = realm.where(Contacts.class).findAll();
+        RealmResults<Contact> results = realm.where(Contact.class).findAll();
         if (!results.isEmpty()) {
             try {
                 realm.beginTransaction();

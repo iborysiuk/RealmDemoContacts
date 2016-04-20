@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.google.common.base.Optional;
 import com.realmcontacts.R;
-import com.realmcontacts.adapters.ContactsRecyclerAdapter;
-import com.realmcontacts.model.Contacts;
+import com.realmcontacts.adapters.PhonesRecyclerAdapter;
+import com.realmcontacts.model.Contact;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -30,7 +30,7 @@ public class PhoneFragment extends BaseFragment {
     RealmRecyclerView realmRecyclerView;
 
     private Optional<Realm> realm;
-    private ContactsRecyclerAdapter contactAdapter;
+    private PhonesRecyclerAdapter phonesAdapter;
 
     @Override
     protected int getLayout() {
@@ -55,14 +55,14 @@ public class PhoneFragment extends BaseFragment {
             if (isActivityNotNull()) {
                 realm = Optional.of(Realm.getDefaultInstance());
                 if (realm.isPresent()) {
-                    RealmResults<Contacts> realmResults = realm.get()
-                            .where(Contacts.class)
+                    RealmResults<Contact> realmResults = realm.get()
+                            .where(Contact.class)
                             .findAllSorted("name", Sort.ASCENDING);
 
-                    contactAdapter = new ContactsRecyclerAdapter(getActivity(), realmResults, true, true, true, "name");
-                    realmRecyclerView.setAdapter(contactAdapter);
+                    phonesAdapter = new PhonesRecyclerAdapter(getActivity(), realmResults, true, true, true, "name");
+                    realmRecyclerView.setAdapter(phonesAdapter);
                     realmRecyclerView.setOnRefreshListener(this::manualSyncContacts);
-                    contactAdapter.setUpdatedListener((boolean isUpdated) -> realmRecyclerView.setRefreshing(!isUpdated));
+                    phonesAdapter.setUpdatedListener((boolean isUpdated) -> realmRecyclerView.setRefreshing(!isUpdated));
                 }
             }
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class PhoneFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (contactAdapter != null) contactAdapter.close();
+        if (phonesAdapter != null) phonesAdapter.close();
         if (realm.isPresent()) realm.get().close();
         realm = Optional.absent();
         if (isActivityNotNull()) Picasso.with(getActivity()).cancelTag(this);

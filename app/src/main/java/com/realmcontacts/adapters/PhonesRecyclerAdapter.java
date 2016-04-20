@@ -20,18 +20,17 @@ import io.realm.RealmViewHolder;
 /**
  * Created by Yuriy on 2016-03-28 RealmContacts.
  */
-public class ContactsRecyclerAdapter
-        extends RealmBasedRecyclerViewAdapter<Contact, ContactsRecyclerAdapter.ViewHolder> {
+public class PhonesRecyclerAdapter
+        extends RealmBasedRecyclerViewAdapter<Contact, PhonesRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
-    private final static String AVATAR_URL = "http://s3.amazonaws.com/vaster/vaster-profiles/%s/image/profile.jpg";
 
-    public ContactsRecyclerAdapter(Context context, RealmResults<Contact> realmResults, boolean automaticUpdate, boolean animateResults, String animateExtraColumnName) {
+    public PhonesRecyclerAdapter(Context context, RealmResults<Contact> realmResults, boolean automaticUpdate, boolean animateResults, String animateExtraColumnName) {
         super(context, realmResults, automaticUpdate, animateResults, animateExtraColumnName);
         mContext = context;
     }
 
-    public ContactsRecyclerAdapter(Context context, RealmResults<Contact> realmResults, boolean automaticUpdate, boolean animateResults, boolean addSectionHeaders, String headerColumnName) {
+    public PhonesRecyclerAdapter(Context context, RealmResults<Contact> realmResults, boolean automaticUpdate, boolean animateResults, boolean addSectionHeaders, String headerColumnName) {
         super(context, realmResults, automaticUpdate, animateResults, addSectionHeaders, headerColumnName);
         mContext = context;
     }
@@ -50,7 +49,7 @@ public class ContactsRecyclerAdapter
     @Override
     public void onBindRealmViewHolder(ViewHolder viewHolder, int position) {
         final Contact contact = realmResults.get(position);
-        viewHolder.contactName.setText(contact.getVsrName());
+        viewHolder.contactName.setText(contact.getName());
         viewHolder.contactType.setText("Mobile");
 
         Picasso picasso = Picasso.with(mContext);
@@ -58,7 +57,7 @@ public class ContactsRecyclerAdapter
         picasso.setLoggingEnabled(true);
 
         picasso
-                .load(String.format(AVATAR_URL, contact.getVsrId()))
+                .load(contact.getThumbnail())
                 .fit()
                 .centerCrop()
                 .transform(new CropCircleTransformation())
