@@ -110,11 +110,12 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
                             for (VContactsData vContact : vContactsList) {
                                 Contact contact = realm.where(Contact.class)
                                         .equalTo("numbers.number", vContact.getId()).findFirst();
-
                                 if (contact != null) {
+                                    String vsrName = vContact.getName().substring(0,1).toUpperCase()
+                                            + vContact.getName().substring(1).toLowerCase();
                                     realm.beginTransaction();
                                     contact.setVsrId(vContact.getVid());
-                                    contact.setVsrName(vContact.getName());
+                                    contact.setVsrName(vsrName);
                                     realm.commitTransaction();
                                 }
                             }

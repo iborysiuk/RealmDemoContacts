@@ -1,8 +1,6 @@
 package com.realmcontacts.fragments;
 
-import android.content.ContentResolver;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -60,10 +58,8 @@ public class ContactFragment extends BaseFragment {
                             .isNotNull("vsrName")
                             .findAllSorted("vsrName", Sort.ASCENDING);
 
-                    contactAdapter = new ContactsRecyclerAdapter(getActivity(), realmResults, true, true, "vsrName");
+                    contactAdapter = new ContactsRecyclerAdapter(getActivity(), realmResults, true, true, true, "vsrName");
                     realmRecyclerView.setAdapter(contactAdapter);
-                    //realmRecyclerView.setOnRefreshListener(this::manualSyncContacts);
-                    //contactAdapter.setUpdatedListener((boolean isUpdated) -> realmRecyclerView.setRefreshing(!isUpdated));
                 }
             }
         } catch (Exception e) {
@@ -80,10 +76,4 @@ public class ContactFragment extends BaseFragment {
         if (isActivityNotNull()) Picasso.with(getActivity()).cancelTag(this);
     }
 
-    private void manualSyncContacts() {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        ContentResolver.requestSync(null, ContactsContract.AUTHORITY, bundle);
-    }
 }

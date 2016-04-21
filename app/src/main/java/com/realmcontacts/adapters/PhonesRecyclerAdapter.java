@@ -1,6 +1,7 @@
 package com.realmcontacts.adapters;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.realmcontacts.R;
 import com.realmcontacts.model.Contact;
 import com.realmcontacts.utils.CropCircleTransformation;
+import com.realmcontacts.utils.Utils;
 import com.realmcontacts.widgets.ContactImageView;
 import com.squareup.picasso.Picasso;
 
@@ -51,6 +53,10 @@ public class PhonesRecyclerAdapter
         final Contact contact = realmResults.get(position);
         viewHolder.contactName.setText(contact.getName());
         viewHolder.contactType.setText("Mobile");
+        viewHolder.contactIcon.setImageDrawable(
+                !TextUtils.isEmpty(contact.getVsrId())
+                        ? Utils.getDrawable(R.drawable.ic_shield)
+                        : null);
 
         Picasso picasso = Picasso.with(mContext);
         picasso.setIndicatorsEnabled(true);
@@ -70,6 +76,8 @@ public class PhonesRecyclerAdapter
 
         @Bind(R.id.contact_image)
         ContactImageView contactImage;
+        @Bind(R.id.contact_image_icon)
+        ContactImageView contactIcon;
         @Bind(R.id.contact_text_view)
         TextView contactName;
         @Bind(R.id.contact_type)

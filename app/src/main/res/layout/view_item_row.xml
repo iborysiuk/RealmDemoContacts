@@ -13,25 +13,43 @@
         android:layoutDirection="locale"
         tools:ignore="UselessParent">
 
-        <com.realmcontacts.widgets.ContactImageView
-            android:id="@+id/contact.image"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:scaleType="centerCrop"
-            tools:ignore="ContentDescription" />
+        <FrameLayout
+            android:id="@+id/contact.image.container"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center">
+
+            <com.realmcontacts.widgets.ContactImageView
+                android:id="@+id/contact.image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                tools:src="@drawable/ic_contact"
+                tools:ignore="ContentDescription" />
+
+            <com.realmcontacts.widgets.ContactImageView
+                android:id="@+id/contact.image.icon"
+                android:layout_width="15dp"
+                android:layout_height="12dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="1dp"
+                tools:src="@drawable/ic_umbraco"
+                android:layout_gravity="bottom|end"
+                tools:ignore="ContentDescription" />
+
+        </FrameLayout>
 
         <TextView
+            style="@style/TextAppearance.AppCompat.Caption"
             android:id="@+id/contact.type"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="28dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="32dp"
-            android:layout_toEndOf="@id/contact.image"
+            android:layout_toEndOf="@id/contact.image.container"
             android:gravity="center_vertical"
             android:paddingBottom="10dp"
             android:paddingEnd="8dp"
@@ -39,14 +57,14 @@
             tools:text="Mobile" />
 
         <TextView
+            style="@style/TextAppearance.AppCompat.Body1"
             android:id="@+id/contact.text.view"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_above="@id/contact.type"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="40dp"
-            android:layout_toEndOf="@id/contact.image"
+            android:layout_toEndOf="@id/contact.image.container"
             android:gravity="center_vertical|bottom"
             android:paddingEnd="8dp"
             android:paddingStart="16dp"

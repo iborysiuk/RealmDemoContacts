@@ -13,6 +13,6 @@
         app:rrvEmptyLayoutId="@layout/empty_view"
         app:rrvHeaderColumnName="name"
         app:rrvIsRefreshable="false"
-        app:rrvLayoutType="LinearLayout" />
+        app:rrvLayoutType="LinearLayoutWithHeaders" />
 
 </LinearLayout>
