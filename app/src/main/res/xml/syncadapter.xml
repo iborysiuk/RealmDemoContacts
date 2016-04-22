@@ -4,5 +4,5 @@
     android:accountType="com.realmcontacts.account"
     android:userVisible="true"
     android:supportsUploading="true"
-    android:allowParallelSyncs="false"
+    android:allowParallelSyncs="true"
     android:isAlwaysSyncable="true" />

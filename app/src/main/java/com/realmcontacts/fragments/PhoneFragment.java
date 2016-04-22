@@ -6,11 +6,13 @@ import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.common.base.Optional;
 import com.realmcontacts.R;
 import com.realmcontacts.adapters.PhonesRecyclerAdapter;
 import com.realmcontacts.model.Contact;
+import com.realmcontacts.utils.NetworkUtils;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -62,7 +64,9 @@ public class PhoneFragment extends BaseFragment {
                     phonesAdapter = new PhonesRecyclerAdapter(getActivity(), realmResults, true, true, true, "name");
                     realmRecyclerView.setAdapter(phonesAdapter);
                     realmRecyclerView.setOnRefreshListener(this::manualSyncContacts);
-                    phonesAdapter.setUpdatedListener((boolean isUpdated) -> realmRecyclerView.setRefreshing(!isUpdated));
+                    phonesAdapter.setUpdatedListener((boolean isUpdated) -> {
+                        realmRecyclerView.setRefreshing(!isUpdated);
+                    });
                 }
             }
         } catch (Exception e) {
@@ -80,10 +84,16 @@ public class PhoneFragment extends BaseFragment {
     }
 
     private void manualSyncContacts() {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        ContentResolver.requestSync(null, ContactsContract.AUTHORITY, bundle);
+        if (isActivityNotNull())
+            if (NetworkUtils.isOnline(getActivity())) {
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+                ContentResolver.requestSync(null, ContactsContract.AUTHORITY, bundle);
+            } else {
+                Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                realmRecyclerView.setRefreshing(false);
+            }
     }
 
 }

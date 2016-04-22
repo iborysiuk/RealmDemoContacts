@@ -18,10 +18,10 @@ import okhttp3.OkHttpClient;
 /**
  * Created by Yuriy on 2016-04-18 RealmContacts.
  */
-public class CustomSSL {
+public class RestAPICustomSSL {
 
     @SuppressWarnings("null")
-    public static OkHttpClient.Builder configureClient(OkHttpClient.Builder client) {
+    public static OkHttpClient.Builder configureSSL(OkHttpClient.Builder client) {
         final TrustManager[] certs = new TrustManager[]{new X509TrustManager() {
 
             @SuppressLint("TrustAllX509TrustManager")

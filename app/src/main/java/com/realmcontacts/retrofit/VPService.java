@@ -9,8 +9,8 @@ import rx.Observable;
 /**
  * Created by Yuriy on 2016-04-18 RealmContacts.
  */
-public interface APIService {
+public interface VPService {
 
-    @POST("users/{id}/contacts")
+    @POST("vps-api/api/users/{id}/contacts")
     Observable<ContactsResponse> crossReferenceRx(@Path("id") String userId);
 }

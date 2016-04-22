@@ -13,9 +13,10 @@ import android.provider.Settings;
 import com.google.common.collect.Lists;
 import com.realmcontacts.model.Contact;
 import com.realmcontacts.model.Number;
-import com.realmcontacts.retrofit.APIClient;
 import com.realmcontacts.retrofit.APIRequestBody;
 import com.realmcontacts.retrofit.ContactData;
+import com.realmcontacts.retrofit.RestAPIClient;
+import com.realmcontacts.retrofit.VPService;
 import com.realmcontacts.retrofit.data.ContactsResponse;
 import com.realmcontacts.retrofit.data.VContactsData;
 import com.realmcontacts.utils.Logs;
@@ -100,7 +101,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
     @DebugLog
     private void crossReference(Realm realm, List<ContactData> contactsList) {
         if (contactsList.isEmpty()) return;
-        APIClient.getInstance().getAPIService(composeBody(contactsList))
+        RestAPIClient.createVPService(VPService.class, composeBody(contactsList))
                 .crossReferenceRx("1006311459790753945")
                 .subscribe(new Action1<ContactsResponse>() {
                     @Override
@@ -111,7 +112,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
                                 Contact contact = realm.where(Contact.class)
                                         .equalTo("numbers.number", vContact.getId()).findFirst();
                                 if (contact != null) {
-                                    String vsrName = vContact.getName().substring(0,1).toUpperCase()
+                                    String vsrName = vContact.getName().substring(0, 1).toUpperCase()
                                             + vContact.getName().substring(1).toLowerCase();
                                     realm.beginTransaction();
                                     contact.setVsrId(vContact.getVid());

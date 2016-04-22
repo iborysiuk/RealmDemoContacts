@@ -8,8 +8,10 @@ import android.widget.TextView;
 import com.realmcontacts.R;
 import com.realmcontacts.model.Contact;
 import com.realmcontacts.utils.CropCircleTransformation;
+import com.realmcontacts.utils.NetworkUtils;
 import com.realmcontacts.utils.Utils;
 import com.realmcontacts.widgets.ContactImageView;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -60,6 +62,7 @@ public class ContactsRecyclerAdapter
         picasso.setLoggingEnabled(true);
         picasso
                 .load(String.format(AVATAR_URL, contact.getVsrId()))
+                .networkPolicy(!NetworkUtils.isOnline(mContext) ? NetworkPolicy.OFFLINE : NetworkPolicy.NO_CACHE)
                 .fit()
                 .centerCrop()
                 .transform(new CropCircleTransformation())
